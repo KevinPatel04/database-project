@@ -1,0 +1,6 @@
+__pycache__/models.cpython-37.pyc
+*.pyc
+.vscode/settings.json
+venv/*
+database.ini
+demo/*
