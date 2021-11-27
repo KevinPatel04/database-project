@@ -82,7 +82,7 @@ create table Appears_for(
 	eid integer,
 	adate date,
 	atime time,
-	score integer not null,
+	points integer not null,
 	primary key(suid,eid,adate,atime),
 	foreign key (adate,atime) references Attempts(adate,atime),
 	foreign key (suid) references Users(uid)
