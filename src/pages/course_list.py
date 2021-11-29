@@ -19,7 +19,7 @@ def write():
             if term:
                 f"Display the Course List"
 
-                sql_table = f"SELECT DISTINCT cid AS course_id,course_title AS title FROM course WHERE term='{term}';"
+                sql_table = f"SELECT DISTINCT cid AS course_id,course_title AS title,U.firstname || ' ' || U.lastname AS instructor,U.email AS instructor_email FROM course C,users U WHERE term='{term}' AND U.uid = C.instructor;"
                 try:
                     df = conn.query_db_all(sql_table)
                     st.dataframe(df)
