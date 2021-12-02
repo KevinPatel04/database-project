@@ -3,23 +3,20 @@ import psycopg2
 import streamlit as st
 from configparser import ConfigParser
 
-import src.pages.page1 as page1
-import src.pages.page2 as page2
-import src.pages.page3 as page3
-import src.pages.page4 as page4
-
-"""Main module for the streamlit app"""
+import src.pages.all_tables_view as all_tables_view
+import src.pages.course_list as course_list
+import src.pages.exam_view as exam_view
+import src.pages.roster_view as roster_view
 
 PAGES = {
-    "Page1": page1,
-    "Page2": page2,
-    "Page3": page3,
-    "Page4": page4
+    "Display All Tables": all_tables_view,
+    "Course List": course_list,
+    "Exams": exam_view,
+    "View Roster": roster_view
 }
 
 
 def main():
-    """Main function of the App"""
     st.sidebar.title("Navigation")
     selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
