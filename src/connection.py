@@ -39,3 +39,22 @@ def query_db_all(sql: str):
     df = pd.DataFrame(data=data, columns=column_names)
 
     return df
+
+@st.cache
+def connect(sql,arguments):
+    conn = None
+    try:
+        params = get_config()
+        # print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+        # print(sql)
+        df = pd.read_sql_query(sql, conn,params=arguments)
+        cur.close()
+        return df
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            # print('Database connection closed.')
