@@ -9,7 +9,7 @@ def write():
             """## Quiz - Display All Tables""",unsafe_allow_html=True
             )
 
-        sql_all_table_names = "SELECT relname FROM pg_class WHERE relkind='r' AND relname !~ '^(pg_|sql_)';"
+        sql_all_table_names = "SELECT relname FROM pg_class WHERE relkind='r' AND relname !~ '^(pg_|sql_)' ORDER BY relname;"
         try:
             all_table_names = conn.query_db_all(sql_all_table_names)["relname"].tolist()
             table_name = st.selectbox("Choose a table", all_table_names)

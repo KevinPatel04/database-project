@@ -8,22 +8,24 @@ def write():
         st.markdown(
             """## Quiz - Course Roster""",unsafe_allow_html=True
             )
-        
+        col1, col2 = st.columns(2)
         sql_all_terms = "SELECT DISTINCT term FROM course;"
         try:
             all_terms = conn.query_db_all(sql_all_terms)["term"].tolist()
-            term = st.selectbox("Choose a term", all_terms)
+            with col1:
+                term = st.selectbox("Choose a term", all_terms)
         except:
             st.write("Sorry! Something went wrong with your query, please try again.")
         else:
             if term:
                 f"Display the Course List"
-
+                
                 sql_all_course_in_term = f"SELECT DISTINCT cid,course_title FROM course WHERE term = '{term}';"
                 try:
                     df = conn.query_db_all(sql_all_course_in_term)
                     all_courses = df["cid"]+': '+df["course_title"].tolist()
-                    course = st.selectbox("Choose a course", all_courses)
+                    with col2:
+                        course = st.selectbox("Choose a course", all_courses)
                     cid = course.split(': ')[0]
                     sql_instructor_in_course = f"SELECT U.firstname || ' ' || U.lastname AS name FROM users U,course C WHERE U.uid = C.instructor AND C.cid = '{cid}' AND C.term = '{term}' LIMIT 1;"
                     instructor = conn.query_db_all(sql_instructor_in_course)['name'].iloc[0]
