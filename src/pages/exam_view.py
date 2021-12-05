@@ -45,7 +45,12 @@ def write():
                                 else:
                                     # st.dataframe(df)
                                     cols = st.columns(3)
-                                    select_exam_meta = f"SELECT firstname || ' ' || lastname AS name,managed_by,is_released,due_date,due_time FROM users, exam WHERE uid = managed_by AND eid={exam_eid} LIMIT 1;"
+                                    select_exam_meta = f"""SELECT firstname || ' ' || lastname AS name,managed_by,is_released,due_date,due_time, SUM(points) as max_score
+                                                        FROM users, exam E, questions Q
+                                                        WHERE uid = managed_by 
+                                                        AND Q.eid = E.eid
+                                                        AND E.eid={exam_eid}
+                                                        GROUP BY firstname || ' ' || lastname,managed_by,is_released,due_date,due_time;"""
                                     try:
                                         exam_meta = conn.query_db_all(select_exam_meta).iloc[0]
                                     except:
@@ -58,10 +63,8 @@ def write():
                                             st.markdown(f"**Due:**")
                                             st.markdown(f"**{exam_meta['due_date']} {exam_meta['due_time']}**")
                                         with cols[2]:
-                                            if exam_meta['is_released']:
-                                                st.success('Released')
-                                            else:
-                                                st.warning('Not Released')
+                                            st.markdown(f"**Total Points:**")
+                                            st.markdown(f"**{exam_meta['max_score']}**")
                                         st.markdown("---")
                                         for idx in range(len(df)):
                                             create_question_card(df,idx)
