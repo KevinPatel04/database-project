@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from urllib.error import URLError
 
 # pages view
+import src.pages.home as home
 import src.pages.all_tables_view as all_tables_view
 import src.pages.course_list as course_list
 import src.pages.exam_view as exam_view
@@ -15,6 +16,7 @@ import src.pages.students_attempts as student_attempts
 
 
 PAGES = {
+    "Home": home,
     "Course List": course_list,
     "View Roster": roster_view,
     "Exams": exam_view,
@@ -29,8 +31,8 @@ def main():
 
     page = PAGES[selection]
 
-    with st.spinner(f"Loading {selection} ..."):
-        page.write()
+    # with st.spinner(f"Loading {selection} ..."):
+    page.write()
   
 if __name__ == "__main__":
     main()
