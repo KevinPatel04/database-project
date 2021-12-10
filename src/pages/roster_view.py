@@ -8,6 +8,7 @@ def write():
         st.markdown(
             """## Quiz - Course Roster""",unsafe_allow_html=True
             )
+        st.info('Find the list of students who have enrolled in a given course for a given term. Also find who is the instructor for that particular course.')
         col1, col2 = st.columns(2)
         sql_all_terms = "SELECT DISTINCT term FROM course;"
         try:

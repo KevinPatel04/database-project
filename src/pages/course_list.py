@@ -8,7 +8,7 @@ def write():
         st.markdown(
             """## Quiz - Course List""",unsafe_allow_html=True
             )
-
+        st.info('List all the courses offered in a given term along with the instructors information and student enrollment count. Also, find the most popular course for a given term among students purely based on enrollment information.')
         sql_all_terms = "SELECT DISTINCT term FROM course;"
         try:
             all_terms = conn.query_db_all(sql_all_terms)["term"].tolist()

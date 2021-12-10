@@ -5,6 +5,7 @@ from src import connection as conn
 def write():
     with st.spinner("Loading ..."):
         st.markdown('## Quiz - Exam Stats',unsafe_allow_html=True)
+        st.info('For a given exam fetch the exam stats along with score of each student. If a student has multiple attempts show the latest attempt details.')
         col1, col2, col3 = st.columns(3)
         try:
             with col1:

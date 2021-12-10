@@ -12,6 +12,7 @@ import src.pages.course_list as course_list
 import src.pages.exam_view as exam_view
 import src.pages.roster_view as roster_view
 import src.pages.exam_stats as exam_stats
+import src.pages.exam_trends as exam_trends
 import src.pages.students_attempts as student_attempts
 
 
@@ -21,6 +22,7 @@ PAGES = {
     "View Roster": roster_view,
     "Exams": exam_view,
     "Exam Stats": exam_stats,
+    "Exam Trends": exam_trends,
     "Student Attempts": student_attempts,
     "Display All Tables": all_tables_view
 }
