@@ -8,6 +8,7 @@ def write():
         st.markdown(
             """## Quiz - Exams""",unsafe_allow_html=True
             )
+        st.info('List all the questions along with their answers for a given exam. Also list out meta information such as who manages this exam, total possible score, and due date/time.')
         col1,col2,col3 = st.columns(3)
         sql_all_terms = "SELECT DISTINCT term FROM course;"
         try:

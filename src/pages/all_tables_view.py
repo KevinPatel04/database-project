@@ -8,7 +8,7 @@ def write():
         st.markdown(
             """## Quiz - Display All Tables""",unsafe_allow_html=True
             )
-
+        st.info('List all the records for the a given table from the database.')
         sql_all_table_names = "SELECT relname FROM pg_class WHERE relkind='r' AND relname !~ '^(pg_|sql_)' ORDER BY relname;"
         try:
             all_table_names = conn.query_db_all(sql_all_table_names)["relname"].tolist()

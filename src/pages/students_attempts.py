@@ -8,6 +8,8 @@ def write():
     """Used to write the page in the app.py file"""
     with st.spinner("Loading ..."):
         st.markdown('## Quiz - Previous Attempts',unsafe_allow_html=True)
+        st.info("List down all the recorded quiz attempts of the given student for a given exam.")
+
         col1, col2, col3,col4 = st.columns(4)
         try:
             with col1:
